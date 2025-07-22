@@ -38,7 +38,6 @@ ResQ aims to provide quick, reliable, and discreet emergency assistance. It allo
 - Express.js
 - MongoDB (with Mongoose)
 - JWT for auth
-- Twilio / Fast2SMS for SMS integration
 - Location updates via coordinates
 
 ---
