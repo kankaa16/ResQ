@@ -39,6 +39,7 @@ export default function UserDetails () {
   "Phone Number": "phoneno",
   "Alternate Phone Number": "alternatephone",
   "Email": "email",
+  "Last Location":"lastlocation",
   "Home Address": "address",
   "Medical Conditions": "medicalconditions",
   "Allergies": "allergies",
@@ -123,6 +124,10 @@ const savedetails = async () => {
     { label: 'Medications', value: user.medications||"" }
   ];
 
+  const location=[
+    {label:"Last Location", value:user.lastlocation||""}
+  ];
+
 
   const handlefieldchange = (label, value) => {
   const key = labelToKey[label];
@@ -144,6 +149,7 @@ const savedetails = async () => {
   avatar={user?.avatar}
   fullname={user?.fullname}
   editMode={editMode}
+  setuserdetails={setuser}
   onEditToggle={() => setEditMode(!editMode)}
 
         />
@@ -182,17 +188,9 @@ onfieldchange={handlefieldchange}
 ))}
           </View>
 
-          <View style={s.card}>
-            <View style={s.cardHeader}>
-              <Text style={s.cardIcon}>📍</Text><Text style={s.cardHeading}>Location Settings</Text>
-            </View>
-            <View style={s.fieldRow}>
-              <Text style={s.fieldLabel}>Live Location Sharing</Text>
-              <Switch value={user.liveLocationSharing} onValueChange={toggleLocation} />
-            </View>
-            <Text style={s.fieldLabel}>Last Known Location</Text>
-            <Text style={[s.fieldValue, s.location]}>{user.lastlocation}</Text>
-          </View>
+  
+
+          <InfoCard title='Location Settings' icon='📍' fields={location} editMode={editMode} onfieldchange={handlefieldchange}/>
 
           <InfoCard title="Health Details" icon="❤️" fields={health} editMode={editMode}
           onfieldchange={handlefieldchange} />

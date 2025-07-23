@@ -193,3 +193,19 @@ export const deletecontact=async(req,res)=>{
         res.json({error:"server issue!"});
     }
 };
+
+  export const setavatar=async(req,res)=>{
+    try {
+    const user = await usermodel.findById(req.user.id);
+    if (!user) return res.status(404).send("User not found");
+
+    user.avatar = req.body.avatar;
+    await user.save();
+
+    res.json({ success: true, avatar: user.avatar });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Server error");
+  }
+};
+  

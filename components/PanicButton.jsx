@@ -11,8 +11,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 const PanicButton = () => {
-  const [isActivated, setIsActivated] = useState(true);
-  const [msgsent, setmsgsent] = useState(false); 
+  const [isActivated, setIsActivated] = useState(false);
+  // const [msgsent, setmsgsent] = useState(false); 
   const [showConfirmation, setShowConfirmation] = useState(false);
   const ripple1 = useRef(new Animated.Value(0)).current;
   const ripple2 = useRef(new Animated.Value(0)).current;
@@ -71,17 +71,16 @@ const renderRipple = (rippleAnim) => {
   );
 };
 
-const onPanicPress = async () => {
+const onpanicbtnclick = async () => {
   setIsActivated(true); 
   setTimeout(() => {
   handlesos();
   setIsActivated(false); 
-  }, 3000);
+  }, 1000);
 };
 
 const handlesos = async () => {
   
-
   try {
     let { status } = await Location.requestForegroundPermissionsAsync();
     if (status !== 'granted') {
@@ -91,7 +90,7 @@ const handlesos = async () => {
 
     const location = await Location.getCurrentPositionAsync({});
     const coords = location.coords;
-    const locationLink = `https://maps.google.com/?q=${coords.latitude},${coords.longitude}`;
+    const locationlink = `https://maps.google.com/?q=${coords.latitude},${coords.longitude}`;
 
     const token= await AsyncStorage.getItem("token")
     const response = await axios.get("http://192.168.232.209:3000/sos/sendmsg", {
@@ -99,6 +98,16 @@ const handlesos = async () => {
         Authorization: `Bearer ${token}`, 
       },
     });
+
+    await axios.post("http://192.168.232.209:3000/profile/updateuserdetails",
+     
+      {
+        lastlocation: locationlink,
+      },
+      {headers: {
+        Authorization: `Bearer ${token}`, 
+      }}
+    )
 
       const { contacts, message } = response.data;
 
@@ -109,9 +118,7 @@ const handlesos = async () => {
     }
 
 
-
-
-    const finalmessage = `${message}\n📍 Live location: ${locationLink}`;
+    const finalmessage = `${message}\n📍 Live location: ${locationlink}`;
 
     const isAvailable = await SMS.isAvailableAsync();
     if (isAvailable) {
@@ -134,7 +141,7 @@ const handlesos = async () => {
 
   return (
     <View style={styles.container}>
-    <Pressable style={styles.buttonWrapper} onPress={onPanicPress}>
+    <Pressable style={styles.buttonWrapper} onPress={onpanicbtnclick}>
         {isActivated && (
           <>
             {renderRipple(ripple1)}
@@ -264,7 +271,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 10,
-    backdropFilter: 'blur(10px)', // only works with native backdrop API on web
+    backdropFilter: 'blur(10px)',
   },
   confirmText: {
     color: '#10b981',

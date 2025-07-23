@@ -1,14 +1,20 @@
 import axios from 'axios';
 import React from 'react';
+import * as ImagePicker from 'expo-image-picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CommonActions, useNavigation } from '@react-navigation/native';
-import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, Image, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import Toast from 'react-native-toast-message';
 import { useEffect,useState } from 'react';
 
-const ProfileSummary = ({ avatar,editMode, onEditToggle}) => {
+const ProfileSummary = ({ editMode, onEditToggle}) => {
 
   const navigation = useNavigation();
+
+
+  
+
+
 
   const handlelogout = async () => {
     try {
@@ -61,17 +67,57 @@ const ProfileSummary = ({ avatar,editMode, onEditToggle}) => {
   }
 };
 
+
+
 useEffect(() => {
   fetchuserdetails();
 }, []);
 
+
+const editdp=async()=>{
+    
+    const askpermission=await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if(askpermission.granted==false){
+      Alert.alert("Permission to access gallery is required!");
+      return;
+    }
+
+    const selectimg=await ImagePicker.launchImageLibraryAsync({
+      mediaTypes:ImagePicker.MediaTypeOptions.Images,
+      allowsEditing:true,
+      aspect:[1,1],
+      quality:1,
+    });
+    if(!selectimg.canceled){
+      const selectedimg=selectimg.assets[0].uri;
+      setuserdetails((prev)=>({
+        ...prev,
+        avatar:selectedimg,
+      }))
+      const token=await AsyncStorage.getItem('token');
+      await axios.patch("http://192.168.232.209:3000/profile/avatar",
+       {avatar:selectedimg},
+       {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      Toast.show({ type: 'success', text1: 'Profile picture updated' });
+    }
+
+
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.avatarContainer}>
-        <Image source={{ uri: avatar }} style={styles.avatar} />
-        <TouchableOpacity style={styles.avatarOverlay}>
-          <Text style={styles.editIcon}>📷</Text>
-        </TouchableOpacity>
+        <Image source={{ uri: userdetails?.avatar }} style={styles.avatar} />
+{editMode && (
+  <TouchableOpacity style={styles.avatarOverlay} onPress={editdp}>
+    <Text style={styles.editIcon}>📷</Text>
+  </TouchableOpacity>
+)}
       </View>
 
       <View style={styles.info}>

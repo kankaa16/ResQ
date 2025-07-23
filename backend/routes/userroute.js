@@ -1,5 +1,5 @@
 import express from 'express';
-import {adduserdetails, deletecontact, logout, register, updateEmergencyContacts} from '../controllers/usercontroller.js';
+import {adduserdetails, deletecontact, logout, register, updateEmergencyContacts,setavatar} from '../controllers/usercontroller.js';
 import { login } from '../controllers/usercontroller.js';
 import authenticateuser from '../middlewares/authenticateuser.js';
 import { getuserdetails } from '../controllers/usercontroller.js';
@@ -12,5 +12,6 @@ router.get("/user",authenticateuser,getuserdetails);
 // available only becoz i did req.user = user in middleware//can be accessed in getuserdetails func also!!!
 router.post("/updateuserdetails",authenticateuser,adduserdetails);
 router.post("/emergencycontacts",authenticateuser,updateEmergencyContacts);
+router.patch("/avatar",authenticateuser,setavatar);
 router.delete("/deletecontact/:id",authenticateuser,deletecontact);
 export default router;
