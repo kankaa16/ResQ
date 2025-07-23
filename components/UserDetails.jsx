@@ -198,11 +198,8 @@ onfieldchange={handlefieldchange}
 
         {/* Save / Cancel */}
         <View style={s.footer}>
-          <TouchableOpacity style={s.buttonPrimary} onPress={savedetails}>
-            <Text style={s.btnPrimText}>Save Changes</Text>
-          </TouchableOpacity>
           <TouchableOpacity style={s.buttonSecondary} onPress={() => navigation.navigate("Home")}>
-            <Text style={s.btnSecText}>Cancel</Text>
+            <Text style={s.btnSecText}>Back</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
