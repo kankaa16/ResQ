@@ -3,7 +3,6 @@ import usermodel from '../models/usermodel.js';
 import bcrypt from 'bcryptjs';
 import jwt from "jsonwebtoken";
 import validator from 'validator';
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const register= async(req,res)=>{
     const {fullname,pswd,confirmpswd,email,gender,dob,avatar,phoneno,alternatephone,address,medicalconditions,allergies,bloodgrp,lastlocation,emergencycontacts}=req.body;
@@ -108,11 +107,12 @@ export const login=async(req,res)=>{
 };
 
 export const logout=async(req,res)=>{
-    await AsyncStorage.clear(); //clearing the saved token!
-    NavigationActivation.reset({
-        index:0,
-        routes:[{name:'Landing'}], //heads to landing pg
-    });
+    try{
+      return res.json({message:"Logout handled on frontend"});
+    }
+    catch(err){
+      return res.json({ message: "Server error during logout" });
+    }
 }
 
 export const getuserdetails=async(req,res)=>{
