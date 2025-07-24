@@ -4,7 +4,12 @@ import { Picker } from '@react-native-picker/picker';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+
 const ContactForm = ({ contact, onSubmit, onCancel, existingContacts,details }) => {
+  
+  const BASE_URL = "https://resq-backend-p9s1.onrender.com";
+
+  
   const [formData, setFormData] = useState({
     id:Date.now(),
     name: '',
@@ -50,8 +55,7 @@ const savedetails = async () => {
       : [...existingContacts, updatedContact];
 
 
-   await axios.post(
-  "http://192.168.232.209:3000/profile/emergencycontacts",
+   await axios.post(`${BASE_URL}/profile/emergencycontacts`,
   { emergencycontacts: updatedContacts },
   {
     headers: {

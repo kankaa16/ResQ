@@ -9,6 +9,10 @@ import { useEffect,useState } from 'react';
 
 const ProfileSummary = ({ editMode, onEditToggle}) => {
 
+
+  const BASE_URL = "https://resq-backend-p9s1.onrender.com";
+
+
   const navigation = useNavigation();
 
 
@@ -53,7 +57,7 @@ const ProfileSummary = ({ editMode, onEditToggle}) => {
       return;
     }
 
-    const res = await axios.get("http://192.168.232.209:3000/profile/user", {
+    const res = await axios.get(`${BASE_URL}/profile/user`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -95,7 +99,7 @@ const editdp=async()=>{
         avatar:selectedimg,
       }))
       const token=await AsyncStorage.getItem('token');
-      await axios.patch("http://192.168.232.209:3000/profile/avatar",
+      await axios.patch(`${BASE_URL}/profile/avatar`,
        {avatar:selectedimg},
        {
           headers: {

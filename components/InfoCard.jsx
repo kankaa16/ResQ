@@ -6,6 +6,9 @@ import {
   StyleSheet,
   Platform,
 } from 'react-native';
+
+
+
 const InfoCard = ({ title, icon, fields=[], editMode, onfieldchange }) => {
   return (
     <View style={styles.card}>

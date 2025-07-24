@@ -12,6 +12,9 @@ import { useNavigation } from '@react-navigation/native';
 export default function UserDetails () {
 
 
+  const BASE_URL = "https://resq-backend-p9s1.onrender.com";
+
+
   const navigation = useNavigation();
   const [user, setuser] = useState({
     avatar: 'https://via.placeholder.com/120',
@@ -55,7 +58,7 @@ useEffect(() => {
   const fetchuser = async () => {
     try {
       const token = await AsyncStorage.getItem('token');
-      const res = await axios.get("http://192.168.232.209:3000/profile/user", {
+      const res = await axios.get(`${BASE_URL}/profile/user`, {
         headers: {
           Authorization: `Bearer ${token}`
           
@@ -93,7 +96,7 @@ setuser({
 const savedetails = async () => {
   try {
     const token = await AsyncStorage.getItem('token');
-    const res = await axios.post("http://192.168.232.209:3000/profile/updateuserdetails", user, {
+    const res = await axios.post(`${BASE_URL}/profile/updateuserdetails`, user, {
       headers: {
         Authorization: `Bearer ${token}`
       }

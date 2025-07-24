@@ -5,7 +5,12 @@ import Svg, { Path, Circle } from 'react-native-svg';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 
+
 const Navigation = () => {
+
+  const BASE_URL = "https://resq-backend-p9s1.onrender.com";
+
+
   const navigation = useNavigation();
   const [user, setuser] = useState(null);
 
@@ -13,7 +18,7 @@ const Navigation = () => {
     const fetchUser = async () => {
       try {
         const token = await AsyncStorage.getItem('token');
-        const res = await axios.get('http://192.168.232.209:3000/profile/user', {
+        const res = await axios.get(`${BASE_URL}/profile/user`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setuser(res.data);

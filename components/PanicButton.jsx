@@ -11,6 +11,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 const PanicButton = () => {
+
+
+  const BASE_URL = "https://resq-backend-p9s1.onrender.com";
+
+
   const [isActivated, setIsActivated] = useState(false);
   // const [msgsent, setmsgsent] = useState(false); 
   const [showConfirmation, setShowConfirmation] = useState(false);
@@ -96,13 +101,13 @@ const handlesos = async () => {
     const locationlink = `https://maps.google.com/?q=${coords.latitude},${coords.longitude}`;
 
     const token= await AsyncStorage.getItem("token")
-    const response = await axios.get("http://192.168.232.209:3000/sos/sendmsg", {
+    const response = await axios.get(`${BASE_URL}/sos/sendmsg`, {
       headers: {
         Authorization: `Bearer ${token}`, 
       },
     });
 
-    await axios.post("http://192.168.232.209:3000/profile/updateuserdetails",
+    await axios.post(`${BASE_URL}/profile/updateuserdetails`,
      
       {
         lastlocation: locationlink,

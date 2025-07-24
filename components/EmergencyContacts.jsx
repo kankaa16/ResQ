@@ -13,7 +13,13 @@ import ContactForm from './ContactForm.jsx';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 
+
 export default function EmergencyContacts() {
+
+
+const BASE_URL = "https://resq-backend-p9s1.onrender.com";
+
+
   const [contacts, setContacts] = useState([
     {
       id:Date.now(),
@@ -31,7 +37,7 @@ export default function EmergencyContacts() {
     const fetchuser=async()=>{
       try{
         const token=await AsyncStorage.getItem('token');
-        const res=await axios.get("http://192.168.232.209:3000/profile/user",{
+        const res=await axios.get(`${BASE_URL}/profile/user`,{
   
           headers:{
             Authorization:`Bearer ${token}`
@@ -86,7 +92,7 @@ export default function EmergencyContacts() {
   const handledelete=async(id)=>{
     try{
       const token = await AsyncStorage.getItem('token');
-      await axios.delete(`http://192.168.232.209:3000/profile/deletecontact/${id}`,
+      await axios.delete(`${BASE_URL}/profile/deletecontact/${id}`,
       {
         headers: {
         Authorization: `Bearer ${token}`, 
