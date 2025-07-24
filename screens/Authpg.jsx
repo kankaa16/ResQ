@@ -239,7 +239,7 @@ const handleSubmit = async () => {
 
           {isLogin && (
             <TouchableOpacity>
-              <Text style={styles.forgot}>Forgot Password?</Text>
+              {/* <Text style={styles.forgot}>Forgot Password?</Text> */}
             </TouchableOpacity>
           )}
         </View>
