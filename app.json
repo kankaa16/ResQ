@@ -13,7 +13,11 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.ok1609.resqmobile",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -32,9 +36,9 @@
       }
     },
     "runtimeVersion": "1.0.0",
-
     "updates": {
       "url": "https://u.expo.dev/c3f44b28-622f-48f8-9930-35b296d08042"
-    }
+    },
+    "owner": "ok1609"
   }
 }

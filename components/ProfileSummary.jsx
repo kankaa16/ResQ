@@ -109,6 +109,8 @@ const editdp=async()=>{
 
   }
 
+  
+
   return (
     <View style={styles.container}>
       <View style={styles.avatarContainer}>
@@ -129,7 +131,7 @@ const editdp=async()=>{
         onPress={onEditToggle}
       >
         <Text style={[styles.editButtonText, editMode && styles.editButtonTextActive]}>
-          {editMode ? 'Done' : 'Edit Profile'}
+          {editMode ? 'Below🔻' : 'Edit Profile'}
         </Text>
       </TouchableOpacity>
       <TouchableOpacity
