@@ -4,24 +4,30 @@
   "main": "index.js",
   "scripts": {
     "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
-    "web": "expo start --web"
+    "android": "expo run:android",
+    "ios": "expo run:ios",
+    "web": "expo start --web",
+    "build": "expo export:web"
   },
   "dependencies": {
     "@expo/metro-runtime": "~5.0.4",
     "@expo/vector-icons": "^14.1.0",
+    "@expo/webpack-config": "^19.0.1",
     "@react-native-async-storage/async-storage": "^2.1.2",
     "@react-native-picker/picker": "2.11.1",
     "@react-navigation/native": "^7.1.14",
     "@react-navigation/native-stack": "^7.3.21",
     "axios": "^1.10.0",
     "expo": "53.0.20",
+    "expo-dev-client": "~5.2.4",
+    "expo-image-picker": "~16.1.4",
     "expo-linear-gradient": "~14.1.5",
     "expo-location": "~18.1.6",
+    "expo-sms": "~13.1.4",
     "expo-status-bar": "~2.2.3",
+    "expo-updates": "~0.28.17",
     "react": "19.0.0",
-    "react-dom": "19.0.0",
+    "react-dom": "^19.0.0",
     "react-native": "0.79.5",
     "react-native-geolocation-service": "^5.3.1",
     "react-native-gesture-handler": "~2.24.0",
@@ -29,13 +35,11 @@
     "react-native-reanimated": "~3.17.4",
     "react-native-safe-area-context": "5.4.0",
     "react-native-screens": "~4.11.1",
-    "react-native-sms-android": "^0.4.1",
     "react-native-svg": "15.11.2",
     "react-native-toast-message": "^2.3.3",
     "react-native-web": "^0.20.0",
-    "validator": "^13.15.15",
-    "expo-sms": "~13.1.4",
-    "expo-image-picker": "~16.1.4"
+    "react-scripts": "^5.0.1",
+    "validator": "^13.15.15"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"

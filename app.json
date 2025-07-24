@@ -20,10 +20,21 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.ok1609.resqmobile"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "c3f44b28-622f-48f8-9930-35b296d08042"
+      }
+    },
+    "runtimeVersion": "1.0.0",
+
+    "updates": {
+      "url": "https://u.expo.dev/c3f44b28-622f-48f8-9930-35b296d08042"
     }
   }
 }

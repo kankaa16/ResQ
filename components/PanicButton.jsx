@@ -2,9 +2,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import { View, Text, Pressable, StyleSheet, Animated, Easing, Alert } from 'react-native';
 import Svg, { Path, Circle, Line } from 'react-native-svg';
 import { LinearGradient } from 'expo-linear-gradient';
+import { Platform } from 'react-native';
 import axios from 'axios';
 import * as SMS from 'expo-sms';
-
 import * as Location from 'expo-location';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -80,7 +80,10 @@ const onpanicbtnclick = async () => {
 };
 
 const handlesos = async () => {
-  
+  if (Platform.OS === 'web') {
+    alert("Panic button works only on mobile devices for now.");
+    return;
+  }
   try {
     let { status } = await Location.requestForegroundPermissionsAsync();
     if (status !== 'granted') {
