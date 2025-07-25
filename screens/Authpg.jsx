@@ -19,6 +19,10 @@ import { useNavigation } from '@react-navigation/native';
 const Auth = () => {
   const navigation = useNavigation();
 
+
+  const BASE_URL = "https://resq-backend-p9s1.onrender.com";
+
+
   const [isLogin, setIsLogin] = useState(true);
   const [formData, setFormData] = useState({
     email: '',
@@ -53,7 +57,7 @@ const handleSubmit = async () => {
     }
 
     try {
-    const response = await axios.post("http://192.168.232.209:3000/auth/register", {
+    const response = await axios.post(`${BASE_URL}/auth/register`, {
   fullname: name,
   email,
   pswd: password,
@@ -87,7 +91,7 @@ const handleSubmit = async () => {
   } else {
     // login logic
     try {
-      const response = await axios.post("http://192.168.232.209:3000/auth/login", {
+      const response = await axios.post(`${BASE_URL}/auth/login`, {
         email,
         pswd: password
       });
