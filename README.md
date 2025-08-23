@@ -14,6 +14,8 @@ ResQ is a robust, full-stack mobile safety application meticulously designed to 
 
 ---
 
+## ⬇️ APK Download :    ./assets/ResQ.apk (APK FILE For Downloading the app)
+
 ## 🧠 Motto
 
 > *Empowering safety with one tap. Help is just a second away.*
@@ -51,7 +53,18 @@ ResQ operates on a simple yet effective mechanism to ensure rapid response:
 
 ## 📸 Screenshots
 
+<p align="center">
+  <img src="./assets/get_started.jpg" alt="Login Screen" height="300"/>
+  <img src="./assets/signup.jpg" alt="Signup Screen" height="300"/>
+  <img src="./assets/home1.jpg" alt="Home Screen" height="300"/>
+  <img src="./assets/pr_details.jpg" alt="Profile Screen" height="300"/>
+</p>
 
+<p align="center">
+  <img src="./assets/savedcontacts.jpg" alt="Contacts Screen" height="300"/>
+  <img src="./assets/smssent.jpg" alt="SMS Sent" height="300"/>
+  <img src="./assets/locationsent.jpg" alt="Live Location" height="300"/>
+</p>
 ---
 
 ## 🛠️ Tech Stack
