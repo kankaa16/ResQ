@@ -14,7 +14,10 @@ ResQ is a robust, full-stack mobile safety application meticulously designed to 
 
 ---
 
-## ⬇️ APK Download :    ./assets/ResQ.apk (APK FILE For Downloading the app)
+## 📥 Download
+
+👉 [Download Universal APK](https://github.com/kankaa16/ResQ/releases/download/v1.0.0/ResQ.apk)
+
 
 ## 🧠 Motto
 
